@@ -1,0 +1,64 @@
+package components
+
+import (
+	"fmt"
+	"strings"
+)
+
+templ WideCenterCard(children ...templ.Component) {
+	<div
+		class="bg-white shadow-xl rounded place-self-center flex flex-row flex-wrap place-content-center border-black border mt-10 mx-8 w-11/12"
+	>
+		for _, child := range children {
+			@child
+		}
+	</div>
+}
+
+css letterBGImage(name string) {
+	background-image: { templ.SafeCSSProperty(fmt.Sprintf("url('/static/images/%s.jpg');'", name)) };
+}
+
+templ LetterCard(char string, background string) {
+	<div
+		class={ letterBGImage(background), "bg-white", "shadow-xl", "rounded", "mx-4", "my-2", "py-5", "w-1/6", "h-1/5", "place-self-center", "flex", "flex-col", "place-content-center", "border-black", "border", "bg-center", "bg-cover" }
+	>
+		<a href={ templ.URL(fmt.Sprintf("/difficulty?letter=%s", char)) }>
+			<h1 class="text-4xl text-center underline text-white">
+				{ char }
+			</h1>
+		</a>
+	</div>
+}
+
+templ CardTitle(title string, char string) {
+	<div
+		class={ letterBGImage(strings.ToLower(char)), "mx-4", "my-2", "py-2", "bg-center", "bg-cover", "w-screen" }
+	>
+		<h1 class="text-4xl text-center drop-shadow-2xl underline">
+			{ title }
+		</h1>
+	</div>
+}
+
+templ DifficultyCardBody(children ...templ.Component) {
+	<div
+		class={ "bg-white", "mx-4", "w-1/3", "h-9/12", "place-self-center", "flex", "flex-row", "place-content-center", "bg-center", "bg-cover", "flex-grow", "m-auto" }
+	>
+		for _, child := range children {
+			@child
+		}
+	</div>
+}
+
+templ DifficultyCard(char string, difficulty string) {
+	<div
+		class={ letterBGImage(difficulty), "bg-white", "place-self-center", "flex", "flex-row", "place-content-center", "bg-center", "bg-cover", "m-auto", "my-8", "flex-grow", "h-96", "mx-2", "items-center" }
+	>
+		<a href={ templ.URL(fmt.Sprintf("/question?letter=%s&difficulty=%s", char, difficulty)) }>
+			<h1 class="text-8xl text-center text-white drop-shadow-2xl underline">
+				{ difficulty }
+			</h1>
+		</a>
+	</div>
+}

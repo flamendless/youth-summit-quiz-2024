@@ -1,0 +1,43 @@
+package components
+
+var (
+	onceHeadLinks    = templ.NewOnceHandle()
+	onceErrorHandler = templ.NewOnceHandle()
+)
+
+templ Base(title string, children ...templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			if title == "" {
+				<title>YOUTH SUMMIT QUIZ 2024</title>
+			} else {
+				<title>{ title }</title>
+			}
+			@onceHeadLinks.Once() {
+				<link href="/static/css/tailwind.css" rel="stylesheet"/>
+				<script type="text/javascript" src={ string(templ.URL("/static/js/htmx.min.js")) }></script>
+			}
+		</head>
+		<body
+			class="w-screen h-screen bg-cover bg-no-repeat overflow-x-hidden"
+			style="background-image: url('/static/images/trophy.jpg');"
+		>
+			<div
+				id="header"
+				class="p-2 flex-row content-center items-center place-content-center place-items-center"
+			>
+				<h1 class="text-4xl text-black">
+					<a href="/home">
+						Youth Summit Quiz 2024
+					</a>
+				</h1>
+			</div>
+			for _, child := range children {
+				@child
+			}
+		</body>
+	</html>
+}
