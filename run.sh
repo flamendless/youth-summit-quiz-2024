@@ -19,6 +19,12 @@ client() {
 	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}"
 }
 
+customrun() {
+  gentempl
+  go build -o ./tmp/main .
+  ./tmp/main
+}
+
 deps() {
 	go install github.com/air-verse/air@latest
 	go install go.uber.org/nilaway/cmd/nilaway@latest

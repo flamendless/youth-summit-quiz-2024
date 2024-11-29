@@ -3,6 +3,8 @@ package components
 import (
 	"fmt"
 	"strings"
+	"youth-summit-quiz-2024/internal/constants"
+	"youth-summit-quiz-2024/internal/models"
 )
 
 templ WideCenterCard(children ...templ.Component) {
@@ -60,5 +62,53 @@ templ DifficultyCard(char string, difficulty string) {
 				{ difficulty }
 			</h1>
 		</a>
+	</div>
+}
+
+templ Question(title string, qa *models.QA) {
+	<div
+		class={ "bg-white", "place-self-center", "flex", "flex-col", "place-content-center", "bg-center", "bg-cover", "m-auto", "my-8", "flex-grow", "h-96", "mx-2", "items-center" }
+	>
+		<h1 class="text-2xl text-left text-black drop-shadow-2xl underline">
+			{ title }
+		</h1>
+		<h1 class="text-4xl text-center text-black drop-shadow-2xl m-auto">
+			{ qa.Question }
+		</h1>
+
+		<div
+			class="bg-teal-500 px-4 py-2 rounded"
+		>
+			<a
+				href={ templ.URL(fmt.Sprintf("/answer?letter=%s&difficulty=%s", qa.Letter, qa.Difficulty)) }
+				class="text-2xl text-center text-black drop-shadow-2xl"
+			>
+				Show Answer
+			</a>
+		</div>
+	</div>
+}
+
+templ Answer(title string, qa *models.QA) {
+	<div
+		class={ "bg-white", "place-self-center", "flex", "flex-col", "place-content-center", "bg-center", "bg-cover", "m-auto", "my-8", "flex-grow", "h-96", "mx-2", "items-center" }
+	>
+		<h1 class="text-2xl text-left text-black drop-shadow-2xl underline">
+			{ title }
+		</h1>
+
+		if qa.Difficulty != constants.STR_HURDLE {
+			<h1 class="text-4xl text-center text-black drop-shadow-2xl m-auto">
+				{ qa.Answer }
+			</h1>
+		} else {
+			<div class="flex flex-wrap flex-col place-content-center items-center max-w-11/12 max-h-11/12">
+			for _, ans := range qa.Answers {
+				<h1 class="text-4xl text-center text-black drop-shadow-2xl m-auto">
+					{ ans }
+				</h1>
+			}
+			</div>
+		}
 	</div>
 }

@@ -8,6 +8,7 @@ import (
 	"youth-summit-quiz-2024/client/middlewares"
 	"youth-summit-quiz-2024/internal/ctx"
 	"youth-summit-quiz-2024/internal/logs"
+	"youth-summit-quiz-2024/internal/models"
 
 	"go.uber.org/zap"
 )
@@ -21,7 +22,8 @@ func Serve(ctxClient *ctx.ClientFlags) {
 
 	logger := logs.Log()
 
-	homeService := handlers.HomeService{}
+	qas := models.QAsFromMarkdown("./data/questions.md")
+	homeService := handlers.NewHomeService(qas)
 
 	homeHandler := handlers.NewHomeHandler(logger, homeService)
 
@@ -33,6 +35,7 @@ func Serve(ctxClient *ctx.ClientFlags) {
 	mux.HandleFunc("GET /home", homeHandler.HomePage)
 	mux.HandleFunc("GET /difficulty", homeHandler.DifficultyPage)
 	mux.HandleFunc("GET /question", homeHandler.QuestionPage)
+	mux.HandleFunc("GET /answer", homeHandler.AnswerPage)
 
 	mw := middlewares.NewMiddleware(
 		mux,
