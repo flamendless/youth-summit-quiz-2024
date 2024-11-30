@@ -36,7 +36,7 @@ func WideCenterCard(children ...templ.Component) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-white shadow-xl rounded place-self-center flex flex-row flex-wrap place-content-center border-black border mt-10 mx-8 w-11/12\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-white shadow-xl rounded place-self-center flex flex-row flex-wrap place-content-center border-black border mt-10 mx-8 w-11/12 h-11/12\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -476,12 +476,12 @@ func Answer(title string, qa *models.QA) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex flex-wrap flex-col place-content-center items-center max-w-11/12 max-h-11/12\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex flex-wrap flex-row flex-grow place-content-evenly items-evenly justify-evenly content-evenly max-w-11/12 max-h-11/12 mb-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			for _, ans := range qa.Answers {
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"text-4xl text-center text-black drop-shadow-2xl m-auto\">")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"text-xl text-center text-black drop-shadow-2xl m-auto border border-black p-2 rounded my-2 w-2/12\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

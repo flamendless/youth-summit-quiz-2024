@@ -9,7 +9,7 @@ import (
 
 templ WideCenterCard(children ...templ.Component) {
 	<div
-		class="bg-white shadow-xl rounded place-self-center flex flex-row flex-wrap place-content-center border-black border mt-10 mx-8 w-11/12"
+		class="bg-white shadow-xl rounded place-self-center flex flex-row flex-wrap place-content-center border-black border mt-10 mx-8 w-11/12 h-11/12"
 	>
 		for _, child := range children {
 			@child
@@ -102,9 +102,9 @@ templ Answer(title string, qa *models.QA) {
 				{ qa.Answer }
 			</h1>
 		} else {
-			<div class="flex flex-wrap flex-col place-content-center items-center max-w-11/12 max-h-11/12">
+			<div class="flex flex-wrap flex-row flex-grow place-content-evenly items-evenly justify-evenly content-evenly max-w-11/12 max-h-11/12 mb-2">
 			for _, ans := range qa.Answers {
-				<h1 class="text-4xl text-center text-black drop-shadow-2xl m-auto">
+				<h1 class="text-xl text-center text-black drop-shadow-2xl m-auto border border-black p-2 rounded my-2 w-2/12">
 					{ ans }
 				</h1>
 			}

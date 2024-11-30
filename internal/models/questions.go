@@ -16,6 +16,17 @@ type QA struct {
 	Answers    []string
 }
 
+func (q *QA) PostProcess() {
+	if q.Difficulty != constants.STR_HURDLE {
+		return
+	}
+
+	for i, ans := range q.Answers {
+		words := strings.SplitN(ans, " ", 2)
+		q.Answers[i] = words[1]
+	}
+}
+
 func (q *QA) Validate() {
 	if q.Letter == "" {
 		panic("No letter")
@@ -123,8 +134,9 @@ func QAsFromMarkdown(filepath string) []*QA {
 			}
 		}
 
+		question.PostProcess()
 		question.Validate()
-		// question.Print()
+		question.Print()
 		questions = append(questions, question)
 
 		if question.Difficulty == constants.STR_HURDLE {
@@ -157,4 +169,8 @@ func GetQuestion(questions []*QA, letter string, difficulty string) *QA {
 		panic("No question found")
 	}
 	return questionToUse
+}
+
+func init() {
+	_ = QAsFromMarkdown("./data/questions.md")
 }
