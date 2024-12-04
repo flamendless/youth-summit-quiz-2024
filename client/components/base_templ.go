@@ -8,10 +8,7 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-var (
-	onceHeadLinks    = templ.NewOnceHandle()
-	onceErrorHandler = templ.NewOnceHandle()
-)
+var onceHeadLinks = templ.NewOnceHandle()
 
 func Base(title string, children ...templ.Component) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -51,7 +48,7 @@ func Base(title string, children ...templ.Component) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `client/components/base.templ`, Line: 17, Col: 18}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `client/components/base.templ`, Line: 14, Col: 18}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -74,14 +71,14 @@ func Base(title string, children ...templ.Component) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<link href=\"/static/css/tailwind.css\" rel=\"stylesheet\"><script type=\"text/javascript\" src=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<link href=\"/static/css/tailwind.css\" rel=\"stylesheet\"><link href=\"/static/css/custom.css\" rel=\"stylesheet\"><script type=\"text/javascript\" src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL("/static/js/htmx.min.js")))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `client/components/base.templ`, Line: 21, Col: 84}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `client/components/base.templ`, Line: 19, Col: 84}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -97,7 +94,7 @@ func Base(title string, children ...templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</head><body class=\"w-screen h-screen bg-cover bg-no-repeat overflow-x-hidden\" style=\"background-image: url(&#39;/static/images/trophy.jpg&#39;);\"><div id=\"header\" class=\"p-2 flex-row content-center items-center place-content-center place-items-center\"><h1 class=\"text-4xl text-black\"><a href=\"/home\">Youth Summit Quiz 2024</a></h1></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</head><body class=\"w-screen h-screen bg-cover bg-no-repeat overflow-x-hidden\"><div id=\"header\" class=\"p-2 flex-row content-center items-center place-content-center place-items-center\"><h1 class=\"text-4xl text-black\"><a href=\"/home\">Youth Summit Quiz 2024</a></h1></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

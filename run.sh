@@ -16,7 +16,7 @@ client() {
 	genall
 	cmd.exe /c "start vivaldi http://localhost:7331/"
 	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
-	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}"
+	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}" -d true
 }
 
 customrun() {

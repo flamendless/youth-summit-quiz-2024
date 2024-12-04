@@ -16,6 +16,19 @@ import (
 //go:embed static/*
 var static embed.FS
 
+func cacheMode(ctxClient *ctx.ClientFlags, next http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		if !ctxClient.DevMode {
+			return next
+		}
+
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Cache-Control", "no-store")
+			next.ServeHTTP(w, r)
+		})
+	}(next)
+}
+
 func Serve(ctxClient *ctx.ClientFlags) {
 	addr := fmt.Sprintf("%s%s", ctxClient.Address, ctxClient.Port)
 	logs.Log().Info("Starting site server", zap.String("address", addr))
@@ -28,7 +41,13 @@ func Serve(ctxClient *ctx.ClientFlags) {
 	homeHandler := handlers.NewHomeHandler(logger, homeService)
 
 	mux := http.NewServeMux()
-	mux.Handle("GET /static/", http.FileServer(http.FS(static)))
+	mux.Handle(
+		"GET /static/",
+		cacheMode(
+			ctxClient,
+			http.FileServer(http.FS(static)),
+		),
+	)
 
 	//SHOP
 	mux.HandleFunc("GET /", homeHandler.HomePage)

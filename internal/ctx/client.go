@@ -6,4 +6,5 @@ type ClientFlags struct {
 	Port        string
 	GRPCAddress string
 	TSC         bool
+	DevMode     bool
 }

@@ -1,9 +1,6 @@
 package components
 
-var (
-	onceHeadLinks    = templ.NewOnceHandle()
-	onceErrorHandler = templ.NewOnceHandle()
-)
+var onceHeadLinks = templ.NewOnceHandle()
 
 templ Base(title string, children ...templ.Component) {
 	<!DOCTYPE html>
@@ -18,12 +15,12 @@ templ Base(title string, children ...templ.Component) {
 			}
 			@onceHeadLinks.Once() {
 				<link href="/static/css/tailwind.css" rel="stylesheet"/>
+				<link href="/static/css/custom.css" rel="stylesheet"/>
 				<script type="text/javascript" src={ string(templ.URL("/static/js/htmx.min.js")) }></script>
 			}
 		</head>
 		<body
 			class="w-screen h-screen bg-cover bg-no-repeat overflow-x-hidden"
-			style="background-image: url('/static/images/trophy.jpg');"
 		>
 			<div
 				id="header"

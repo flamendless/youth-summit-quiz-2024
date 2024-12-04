@@ -136,7 +136,7 @@ func QAsFromMarkdown(filepath string) []*QA {
 
 		question.PostProcess()
 		question.Validate()
-		question.Print()
+		// question.Print()
 		questions = append(questions, question)
 
 		if question.Difficulty == constants.STR_HURDLE {
