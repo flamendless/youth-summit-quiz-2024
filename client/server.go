@@ -70,7 +70,7 @@ func Serve(ctxClient *ctx.ClientFlags) {
 			addr,
 			fmt.Sprintf("/etc/letsencrypt/live/%s/fullchain.pem", ctxClient.Address),
 			fmt.Sprintf("/etc/letsencrypt/live/%s/privkey.pem", ctxClient.Address),
-			nil,
+			mw,
 		); err != nil {
 			panic(err)
 		}
