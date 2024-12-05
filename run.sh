@@ -20,9 +20,9 @@ client() {
 }
 
 customrun() {
-  gentempl
-  go build -o ./tmp/main .
-  ./tmp/main
+	gentempl
+	go build -o ./tmp/main .
+	./tmp/main
 }
 
 deps() {
