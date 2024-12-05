@@ -17,13 +17,13 @@ client() {
 	genall
 	cmd.exe /c "start vivaldi http://${ADDRESS}:7331/"
 	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
-	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}" -d true -a "${ADDRESS}"
+	air -c ".air.client.toml" serve_client -p=":${CLIENTPORT}" -d=true -a="${ADDRESS}" -s=false
 }
 
 prod() {
 	genall
 	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
-	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}" -d false -a "${ADDRESS}"
+	air -c ".air.client.toml" serve_client -p=":${CLIENTPORT}" -d=true -a="${ADDRESS}"
 }
 
 customrun() {

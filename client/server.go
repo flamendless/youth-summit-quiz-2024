@@ -61,12 +61,22 @@ func Serve(ctxClient *ctx.ClientFlags) {
 	mw := middlewares.NewMiddleware(
 		mux,
 		middlewares.WithSecure(ctxClient.Secure),
-		middlewares.WithHTTPOnly(false),
+		middlewares.WithHTTPOnly(!ctxClient.Secure),
 		middlewares.WithRequestDurMetrics(true),
 	)
 
-	err := http.ListenAndServe(addr, mw)
-	if err != nil {
-		panic(err)
+	if ctxClient.Secure {
+		if err := http.ListenAndServeTLS(
+			addr,
+			fmt.Sprintf("/etc/letsencrypt/live/%s/fullchain.pem", ctxClient.Address),
+			fmt.Sprintf("/etc/letsencrypt/live/%s/privkey.pem", ctxClient.Address),
+			nil,
+		); err != nil {
+			panic(err)
+		}
+	} else {
+		if err := http.ListenAndServe(addr, mw); err != nil {
+			panic(err)
+		}
 	}
 }
