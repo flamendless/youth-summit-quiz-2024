@@ -26,6 +26,7 @@ customrun() {
 }
 
 deps() {
+	go install github.com/a-h/templ/cmd/templ@latest
 	go install github.com/air-verse/air@latest
 	go install go.uber.org/nilaway/cmd/nilaway@latest
 	go install github.com/kisielk/errcheck@latest
