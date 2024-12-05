@@ -56,7 +56,7 @@ func WideCenterCard(children ...templ.Component) templ.Component {
 
 func letterBGImage(name string) templ.CSSClass {
 	templ_7745c5c3_CSSBuilder := templruntime.GetBuilder()
-	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-image`, templ.SafeCSSProperty(fmt.Sprintf("url('/static/images/%s.jpg');'", name)))))
+	templ_7745c5c3_CSSBuilder.WriteString(string(templ.SanitizeCSS(`background-image`, templ.SafeCSSProperty(fmt.Sprintf("url('/youth-summit-2024-quiz/static/images/%s.jpg');'", name)))))
 	templ_7745c5c3_CSSID := templ.CSSID(`letterBGImage`, templ_7745c5c3_CSSBuilder.String())
 	return templ.ComponentCSSClass{
 		ID:    templ_7745c5c3_CSSID,
@@ -107,7 +107,7 @@ func LetterCard(char string, background string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var5 templ.SafeURL = templ.URL(fmt.Sprintf("/difficulty?letter=%s", char))
+		var templ_7745c5c3_Var5 templ.SafeURL = templ.URL(fmt.Sprintf("/youth-summit-2024-quiz/difficulty?letter=%s", char))
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var5)))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -293,7 +293,7 @@ func DifficultyCard(char string, difficulty string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var17 templ.SafeURL = templ.URL(fmt.Sprintf("/question?letter=%s&difficulty=%s", char, difficulty))
+		var templ_7745c5c3_Var17 templ.SafeURL = templ.URL(fmt.Sprintf("/youth-summit-2024-quiz/question?letter=%s&difficulty=%s", char, difficulty))
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var17)))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -388,7 +388,7 @@ func Question(title string, qa *models.QA) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var24 templ.SafeURL = templ.URL(fmt.Sprintf("/answer?letter=%s&difficulty=%s", qa.Letter, qa.Difficulty))
+		var templ_7745c5c3_Var24 templ.SafeURL = templ.URL(fmt.Sprintf("/youth-summit-2024-quiz/answer?letter=%s&difficulty=%s", qa.Letter, qa.Difficulty))
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var24)))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

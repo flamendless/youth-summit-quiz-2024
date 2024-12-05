@@ -42,19 +42,21 @@ func Serve(ctxClient *ctx.ClientFlags) {
 
 	mux := http.NewServeMux()
 	mux.Handle(
-		"GET /static/",
-		cacheMode(
-			ctxClient,
-			http.FileServer(http.FS(static)),
+		"GET /youth-summit-2024-quiz/static/",
+		http.StripPrefix(
+			"/youth-summit-2024-quiz/",
+			cacheMode(
+				ctxClient,
+				http.FileServer(http.FS(static)),
+			),
 		),
 	)
 
 	//SHOP
-	mux.HandleFunc("GET /", homeHandler.HomePage)
-	mux.HandleFunc("GET /home", homeHandler.HomePage)
-	mux.HandleFunc("GET /difficulty", homeHandler.DifficultyPage)
-	mux.HandleFunc("GET /question", homeHandler.QuestionPage)
-	mux.HandleFunc("GET /answer", homeHandler.AnswerPage)
+	mux.HandleFunc("GET /youth-summit-2024-quiz/", homeHandler.HomePage)
+	mux.HandleFunc("GET /youth-summit-2024-quiz/difficulty", homeHandler.DifficultyPage)
+	mux.HandleFunc("GET /youth-summit-2024-quiz/question", homeHandler.QuestionPage)
+	mux.HandleFunc("GET /youth-summit-2024-quiz/answer", homeHandler.AnswerPage)
 
 	mw := middlewares.NewMiddleware(
 		mux,

@@ -7,16 +7,23 @@ set -euf -o pipefail
 
 GOOS="linux"
 
-CLIENTPORT="3001"
+CLIENTPORT="${PORT:-3001}"
+ADDRESS="${ADDRESS:-localhost}"
 
 WIN_PATH=/mnt/c/Windows/System32
 alias cmd.exe="$WIN_PATH"/cmd.exe
 
 client() {
 	genall
-	cmd.exe /c "start vivaldi http://localhost:7331/"
+	cmd.exe /c "start vivaldi http://${ADDRESS}:7331/"
 	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
-	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}" -d true
+	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}" -d true -a "${ADDRESS}"
+}
+
+prod() {
+	genall
+	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
+	air -c ".air.client.toml" serve_client -p ":${CLIENTPORT}" -d false -a "${ADDRESS}"
 }
 
 customrun() {

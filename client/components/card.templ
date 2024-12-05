@@ -18,14 +18,14 @@ templ WideCenterCard(children ...templ.Component) {
 }
 
 css letterBGImage(name string) {
-	background-image: { templ.SafeCSSProperty(fmt.Sprintf("url('/static/images/%s.jpg');'", name)) };
+	background-image: { templ.SafeCSSProperty(fmt.Sprintf("url('/youth-summit-2024-quiz/static/images/%s.jpg');'", name)) };
 }
 
 templ LetterCard(char string, background string) {
 	<div
 		class={ letterBGImage(background), "bg-white", "shadow-xl", "rounded", "mx-4", "my-2", "py-5", "w-1/6", "h-1/5", "place-self-center", "flex", "flex-col", "place-content-center", "border-black", "border", "bg-center", "bg-cover" }
 	>
-		<a href={ templ.URL(fmt.Sprintf("/difficulty?letter=%s", char)) }>
+		<a href={ templ.URL(fmt.Sprintf("/youth-summit-2024-quiz/difficulty?letter=%s", char)) }>
 			<h1 class="text-4xl text-center underline text-white">
 				{ char }
 			</h1>
@@ -57,7 +57,7 @@ templ DifficultyCard(char string, difficulty string) {
 	<div
 		class={ letterBGImage(difficulty), "bg-white", "place-self-center", "flex", "flex-row", "place-content-center", "bg-center", "bg-cover", "m-auto", "my-8", "flex-grow", "h-96", "mx-2", "items-center" }
 	>
-		<a href={ templ.URL(fmt.Sprintf("/question?letter=%s&difficulty=%s", char, difficulty)) }>
+		<a href={ templ.URL(fmt.Sprintf("/youth-summit-2024-quiz/question?letter=%s&difficulty=%s", char, difficulty)) }>
 			<h1 class="text-8xl text-center text-white drop-shadow-2xl underline">
 				{ difficulty }
 			</h1>
@@ -80,7 +80,7 @@ templ Question(title string, qa *models.QA) {
 			class="bg-teal-500 px-4 py-2 rounded"
 		>
 			<a
-				href={ templ.URL(fmt.Sprintf("/answer?letter=%s&difficulty=%s", qa.Letter, qa.Difficulty)) }
+				href={ templ.URL(fmt.Sprintf("/youth-summit-2024-quiz/answer?letter=%s&difficulty=%s", qa.Letter, qa.Difficulty)) }
 				class="text-2xl text-center text-black drop-shadow-2xl"
 			>
 				Show Answer
