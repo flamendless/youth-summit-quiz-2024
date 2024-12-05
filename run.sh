@@ -22,7 +22,7 @@ client() {
 
 prod() {
 	genall
-	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
+	templ generate
 	air -c ".air.client.toml" serve_client -p=":${CLIENTPORT}" -d=true -a="${ADDRESS}"
 }
 
