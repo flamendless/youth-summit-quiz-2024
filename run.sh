@@ -23,7 +23,7 @@ client() {
 prod() {
 	genall
 	templ generate
-	air -c ".air.client.toml" serve_client -p=":${CLIENTPORT}" -d=true -a="${ADDRESS}"
+	air -c ".air.client.toml" serve_client -p=":${CLIENTPORT}" -d=true -a="${ADDRESS}" -t=true
 }
 
 customrun() {
