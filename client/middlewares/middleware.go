@@ -12,7 +12,6 @@ type Middleware struct {
 	Next              http.Handler
 	Secure            bool
 	HTTPOnly          bool
-	UseGRPC           bool
 	RequestDurMetrics bool
 }
 
@@ -23,7 +22,6 @@ func NewMiddleware(next http.Handler, opts ...MiddlewareOpts) http.Handler {
 		Next:              next,
 		Secure:            true,
 		HTTPOnly:          false,
-		UseGRPC:           false,
 		RequestDurMetrics: false,
 	}
 	for _, opt := range opts {
@@ -34,7 +32,6 @@ func NewMiddleware(next http.Handler, opts ...MiddlewareOpts) http.Handler {
 		"Middlewares",
 		zap.Bool("secure", mw.Secure),
 		zap.Bool("HTTP only", mw.HTTPOnly),
-		zap.Bool("GRPC", mw.UseGRPC),
 		zap.Bool("request duration metrics", mw.RequestDurMetrics),
 	)
 
