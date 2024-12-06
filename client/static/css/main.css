@@ -1,0 +1,17 @@
+body {
+	background-image: url("/youth-summit-2024-quiz/static/images/bg.png");
+}
+
+.bg-flam {
+	background-image: url("/youth-summit-2024-quiz/static/images/avatar.jpg");
+	background-position: center;
+	background-size: contain;
+	background-color: black;
+	background-repeat: no-repeat;
+}
+
+.bg-trophy {
+	background-image: url("/youth-summit-2024-quiz/static/images/trophy.jpg");
+	background-position: top;
+	background-size: cover;
+}

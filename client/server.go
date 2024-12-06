@@ -52,7 +52,7 @@ func Serve(ctxClient *ctx.ClientFlags) {
 		),
 	)
 
-	//SHOP
+	mux.HandleFunc("GET /", homeHandler.BasePage)
 	mux.HandleFunc("GET /youth-summit-2024-quiz/", homeHandler.HomePage)
 	mux.HandleFunc("GET /youth-summit-2024-quiz/difficulty", homeHandler.DifficultyPage)
 	mux.HandleFunc("GET /youth-summit-2024-quiz/question", homeHandler.QuestionPage)

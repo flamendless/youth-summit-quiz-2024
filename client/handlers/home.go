@@ -37,6 +37,10 @@ func NewHomeHandler(
 	}
 }
 
+func (h HomeHandler) BasePage(w http.ResponseWriter, r *http.Request) {
+	components.Main().Render(r.Context(), w)
+}
+
 func (h HomeHandler) HomePage(w http.ResponseWriter, r *http.Request) {
 	cards := make([]templ.Component, 0, 90-65)
 	for i := constants.ASCII_A; i <= constants.ASCII_Z; i++ {
