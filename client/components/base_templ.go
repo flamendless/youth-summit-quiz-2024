@@ -94,7 +94,7 @@ func Base(title string, children ...templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</head><body class=\"w-screen h-screen bg-cover bg-no-repeat overflow-x-hidden\"><div id=\"header\" class=\"p-2 flex-row content-center items-center place-content-center place-items-center\"><h1 class=\"text-4xl text-black\"><a href=\"/youth-summit-2024-quiz/\">Youth Summit Quiz 2024</a></h1></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</head><body class=\"w-screen h-screen bg-cover bg-no-repeat overflow-x-hidden\"><div id=\"header\" class=\"p-2 flex-row content-center items-center place-content-center place-items-center\"><h1 class=\"text-4xl text-black\"><a href=\"/youth-summit-2024-quiz/\">Youth Summit Quiz 2024</a></h1><a href=\"https://github.com/flamendless/youth-summit-quiz-2024\"><img class=\"absolute right-0 top-0\" src=\"/youth-summit-2024-quiz/static/images/github.png\" width=\"72px\"></a></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
