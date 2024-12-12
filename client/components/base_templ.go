@@ -71,14 +71,14 @@ func Base(title string, children ...templ.Component) templ.Component {
 				}()
 			}
 			ctx = templ.InitializeContext(ctx)
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<link href=\"/youth-summit-2024-quiz/static/css/tailwind.css\" rel=\"stylesheet\"><link href=\"/youth-summit-2024-quiz/static/css/custom.css\" rel=\"stylesheet\"><script type=\"text/javascript\" src=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<link rel=\"icon\" type=\"image/x-icon\" href=\"/youth-summit-2024-quiz/static/images/favicon.png\"><link href=\"/youth-summit-2024-quiz/static/css/tailwind.css\" rel=\"stylesheet\"><link href=\"/youth-summit-2024-quiz/static/css/custom.css\" rel=\"stylesheet\"><script type=\"text/javascript\" src=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(string(templ.URL("/youth-summit-2024-quiz/static/js/htmx.min.js")))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `client/components/base.templ`, Line: 19, Col: 107}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `client/components/base.templ`, Line: 20, Col: 107}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
