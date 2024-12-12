@@ -5,17 +5,20 @@
 
 set -euf -o pipefail
 
-GOOS="linux"
-
 CLIENTPORT="${PORT:-3001}"
 ADDRESS="${ADDRESS:-localhost}"
 
-WIN_PATH=/mnt/c/Windows/System32
-alias cmd.exe="$WIN_PATH"/cmd.exe
+BROWSER="${BROWSER:-vivaldi}"
+ISWSL=false
+if [[ $(grep -i Microsoft /proc/version) ]]; then
+	ISWSL=true
+fi
 
 client() {
 	genall
-	cmd.exe /c "start vivaldi http://${ADDRESS}:7331/"
+	if "${ISWSL}"; then
+		cmd.exe /c "start ${BROWSER} http://${ADDRESS}:7331/youth-summit-2024-quiz/"
+	fi
 	templ generate --watch --proxy="http://localhost:${CLIENTPORT}" --open-browser=false &
 	air -c ".air.client.toml" serve_client -p=":${CLIENTPORT}" -d=true -a="${ADDRESS}" -s=false
 }
